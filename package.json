@@ -1,0 +1,19 @@
+{
+  "name": "communiditts",
+  "version": "1.0.0",
+  "description": "Comunidades servicio",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:express": "node ./index.js",
+    "start": "nodemon --legacy-watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.1",
+    "fs": "^0.0.1-security"
+  }
+}
