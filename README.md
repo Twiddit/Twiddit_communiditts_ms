@@ -67,7 +67,7 @@
         String: "eliminada", status: 200
         String: "La communiditt no existe", status: 404
 ### modificar comunidad:
-    patch localhost:3001//communiditt/:id/edit
+    patch localhost:3001/communiditt/:id/edit
     requerimiento:
         params:
             id: id de la comunidad

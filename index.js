@@ -4,7 +4,7 @@ import fs from 'fs'
 import { type } from 'os'
 
 
-var concom = mongoose.createConnection('mongodb://username:password@communiditts_db:27017/miapp?authSource=admin')
+var concom = mongoose.createConnection('mongodb+srv://root:1234@cluster0.ymqxt.mongodb.net/userscomm?retryWrites=true&w=majority')
 var conuser = mongoose.createConnection('mongodb+srv://root:1234@cluster0.ymqxt.mongodb.net/userscomm?retryWrites=true&w=majority')
 var contwiddit = mongoose.createConnection('mongodb+srv://root:1234@cluster0.ymqxt.mongodb.net/userscomm?retryWrites=true&w=majority')
 var User = conuser.model("User",mongoose.Schema({userId:String}));
@@ -79,12 +79,6 @@ app.get('/communiditt', async (_req, res) => {
 })
 //crear comunidad
 app.post('/communiditt/create', async (_req, res) => {
-  console.log('comprobando usuarios moderadores')
-  const mods = _req.body.mods
-  for (let i = 0; i < Object.keys(mods).length; i++) {
-    const user = await User.findOne({userId:mods[i]});
-    if(!user){return res.status(404).send('Uno o mas usuarios seleccionados para moderador no existen')};
-  }
   var jsonAdd = _req.body;
   jsonAdd.members = jsonAdd.mods;
   
@@ -160,10 +154,6 @@ app.patch('/communiditt/:id/edit', async (_req, res) => {
       break;
     case 'mods':
       const mods = _req.body.mods
-      for (let i = 0; i < Object.keys(mods).length; i++) {
-        const user = await User.findOne({userId:mods[i]});
-        if(!user){return res.status(404).send('Uno o mas usuarios seleccionados para moderador no existen')};
-      }
       var auxArr=editJson.members.concat(mods)
       editJson.mods=mods;
       function removeDuplicates(arr) {
@@ -183,9 +173,8 @@ app.patch('/communiditt/:id/edit', async (_req, res) => {
 app.patch('/communiditt/:idComm/:idUser', async (_req, res) => {
 
   const communiditt = await Communiditt.findOne({communidittId:_req.params.idComm});
-  const user = await User.findOne({userId:_req.params.idUser});
-  if(communiditt===null || user===null){
-    return res.status(404).send('La communiditt o el usuario no existe')
+  if(communiditt===null){
+    return res.status(404).send('La communiditt no existe')
   }
   var editJson = communiditt
   switch(_req.query.o){
