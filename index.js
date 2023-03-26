@@ -150,7 +150,7 @@ app.patch('/communiditt/:id/edit', async (_req, res) => {
       editJson.resources=_req.body.resources;
       break;
     case 'rules':
-      editJson.rules=_req.body;
+      editJson.rules=_req.body.rules;
       break;
     case 'mods':
       const mods = _req.body.mods

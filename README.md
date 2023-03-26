@@ -99,3 +99,77 @@
             tags: filtro por etiqueta
     respuesta:
         json: twidditts que pertenecen a la comunidad y filtrados por etiqueta
+
+### graphql
+### lista de comunidades:
+query{
+  communidditsAll{
+    name
+  }
+}
+### crear comunidad:
+mutation {
+  createCommuniddit(communiddit: {
+    name: "Tortugas ninja",
+    aboutUs: "Somos tortugas ninja y vivimos en alcantarillas",
+    tags: ["tortugas","ninjas","heroes"],
+    resources: "No tenemos mas canales",
+    rules: "no golpear /n comer pizza",
+    mods: ["1","6"]
+  }) 
+}
+### obtener comunidad por id
+query{
+  communidditById(communidditId:6){
+    communidittId,
+    name
+  }
+}
+### eliminar comunidad por id
+mutation {
+  deleteCommuniddit(communidditId: 1)
+}
+### modificar comunidad por id: nombre
+mutation{
+  modCommunidditName(communidditId:3,name:{
+    name:"nombre nuevo"
+  })
+}
+### modificar comunidad por id: acerca de
+mutation{
+  modCommunidditAboutUs(communidditId:3,aboutUs:{
+    aboutUs:"acerca de nuevo"
+  })
+}
+### modificar comunidad por id: tags
+mutation{
+  modCommunidditTags(communidditId:3,tags:{
+    tags:["tag nuevo1","tag nuevo2"]
+  })
+}
+### modificar comunidad por id: recursos
+mutation{
+  modCommunidditResources(communidditId:3,resources:{
+    resources:"resource nuevo"
+  })
+}
+### modificar comunidad por id: reglas
+mutation{
+  modCommunidditRules(communidditId:3,rules:{
+    rules:"regla nueva /n otra"
+  })
+}
+### modificar comunidad por id: mods
+mutation{
+  modCommunidditMods(communidditId:3,mods:{
+    mods:["69","87"]
+  })
+}
+### agregar un miembro a la comunidad
+mutation{
+  addCommunidditMember(communidditId:3,userId:232)
+}
+### eliminar un miembro de la comunidad
+mutation{
+  removeCommunidditMember(communidditId:3,userId:232)
+}
