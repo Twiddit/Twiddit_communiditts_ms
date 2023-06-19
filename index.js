@@ -3,10 +3,10 @@ import mongoose, { mongo } from 'mongoose'
 import fs from 'fs'
 import { type } from 'os'
 
-var concom = mongoose.createConnection('mongodb://twiddit:12345@34.81.212.38:27017')
+var concom = mongoose.createConnection('mongodb://twiddit:12345@34.152.36.96:27017')
 //var concom = mongoose.createConnection('mongodb+srv://root:1234@cluster0.ymqxt.mongodb.net/userscomm?retryWrites=true&w=majority')
-var conuser = mongoose.createConnection('mongodb://twiddit:12345@34.81.212.38:27017')
-var contwiddit = mongoose.createConnection('mongodb://twiddit:12345@34.81.212.38:27017')
+var conuser = mongoose.createConnection('mongodb://twiddit:12345@34.152.36.96:27017')
+var contwiddit = mongoose.createConnection('mongodb://twiddit:12345@34.152.36.96:27017')
 var User = conuser.model("User",mongoose.Schema({userId:String}));
 var Twiddit = contwiddit.model("Twiddit",mongoose.Schema({
   userId:{
